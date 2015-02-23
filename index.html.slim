@@ -1,0 +1,128 @@
+doctype html
+html
+  head
+    meta charset='utf-8'
+    meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'
+    meta name='viewport' content='width=1024, user-scalable=no'
+
+    title
+      | JRuby at bookmate talk
+
+    link rel='stylesheet' media='screen' href='vendor/deck.js/core/deck.core.css'
+    link rel='stylesheet' media='screen' href='vendor/deck.js/extensions/goto/deck.goto.css'
+    link rel='stylesheet' media='screen' href='vendor/deck.js/extensions/menu/deck.menu.css'
+    link rel='stylesheet' media='screen' href='vendor/deck.js/extensions/navigation/deck.navigation.css'
+    link rel='stylesheet' media='screen' href='vendor/deck.js/extensions/status/deck.status.css'
+    link rel='stylesheet' media='screen' href='vendor/deck.js/extensions/scale/deck.scale.css'
+    link rel='stylesheet' media='screen' href='vendor/deck.js/themes/style/swiss.css'
+    link rel='stylesheet' media='screen' href='vendor/deck.js/themes/transition/horizontal-slide.css'
+    link rel='stylesheet' media='print'  href='vendor/deck.js/core/print.css'
+
+    script src='vendor/deck.js/modernizr.custom.js'
+
+  body
+    .deck-container
+
+      section.slide#title
+        h1
+          | JRuby at BOOKMATE
+      section.slide#aboutme
+        h2
+          | Кто я такой и что делаю на раёне
+
+        p
+          | Alexey Nikitin @tank_bohr
+
+        p
+          | senior software engineer at bookmate (aka старший заднеконцевик)
+
+      section.slide#aboutjruby
+        h2
+          | Что такое JRuby
+
+        ul
+          li ЯП Ruby
+          li написан на java
+          li много библиотек, хороших и разных
+
+      section.slide#whyjruby
+        h2
+          | Почему JRuby
+
+        ul
+          li мы пишем на ruby
+          li мы не пишем на java
+          li иногда нужна java
+          li никто в команде не умеет clojure/scala/groovy - нужное подчекрнуть
+          li
+            | маппинг из ООП-джавы в ООП-руби один в один, удобнее использовать java-библиотеки
+
+      section.slide#cozy-java-usage
+        markdown:
+          * `require` jar-файла
+          * `java_import`
+          * jruby делает для вас `snake_case` алиасы `camelCase` методов
+          * просто используешь java-классы как ruby-классы
+
+      section.slide#starhub
+        h2
+          | Интеграция со Starhub'ом
+
+        ul
+          li есть только jar-ка
+          li warbler gem
+
+      section.slide#lenskit
+        h2
+          | Нахождение похожих книг
+
+        ul
+          li ruby реализация работала ~1.5 года
+          li lenskit recommender framework
+          li lenskit работает 40 минут (10 из которых запрос в базу)
+          li jbundler gem
+
+      section.slide#smpp
+        h2
+          | SMPP-клиент
+
+        ul
+          li ruby-реализация плохо поддерживается
+          li неполностью реализует протокол
+          li не умеет русские кодировки
+
+      section.slide#limitation
+        h2
+          | Недостатки
+
+        ul
+          li мало, кто использует (не найдете ответов на stackoverflow, а если найдете, то они будут пятилетней давности)
+          li отстает от MRI (1.9.3, 2.2.0 в альфе)
+          li дуализм в библиотеках (что-то в гемах, что-то в java-пакетах); приходится держать и Gemfile, и Jarfile
+
+      div aria-role='navigation'
+        a.deck-prev-link href='#' title='Previous'
+          | ←
+        a.deck-next-link href='#' title='Next'
+          | →
+      p.deck-status aria-role='status'
+        span.deck-status-current
+        |  /
+        span.deck-status-total
+      form.goto-form action='.' method='get'
+        label for='goto-slide'
+          | Go to slide:
+        input#goto-slide type='text' name='slidenum' list='goto-datalist'
+        datalist#goto-datalist
+        input type='submit' value='Go'
+
+    script src='vendor/deck.js/jquery.min.js'
+    script src='vendor/deck.js/core/deck.core.js'
+    script src='vendor/deck.js/extensions/menu/deck.menu.js'
+    script src='vendor/deck.js/extensions/goto/deck.goto.js'
+    script src='vendor/deck.js/extensions/status/deck.status.js'
+    script src='vendor/deck.js/extensions/navigation/deck.navigation.js'
+    script src='vendor/deck.js/extensions/scale/deck.scale.js'
+
+    javascript:
+      $(function() { $.deck('.slide'); });
