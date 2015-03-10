@@ -25,7 +25,7 @@ html
 
       section.slide#title
         h1
-          | JRuby at BOOKMATE
+          | JRuby & BOOKMATE
       section.slide#aboutme
         h2
           | Кто я такой и что делаю на раёне
@@ -36,6 +36,9 @@ html
         p
           | senior software engineer at bookmate (aka старший заднеконцевик)
 
+      section.slide#aboutbookmate
+        img src='img/furkat.png'
+
       section.slide#aboutjruby
         h2
           | Что такое JRuby
@@ -45,6 +48,8 @@ html
           li написан на java
           li много библиотек, хороших и разных
 
+        img src='img/jruby-site.png'
+
       section.slide#whyjruby
         h2
           | Почему JRuby
@@ -52,17 +57,35 @@ html
         ul
           li мы пишем на ruby
           li мы не пишем на java
-          li иногда нужна java
+          li но иногда нужна java
           li никто в команде не умеет clojure/scala/groovy - нужное подчекрнуть
           li
-            | маппинг из ООП-джавы в ООП-руби один в один, удобнее использовать java-библиотеки
+            | маппинг из ООП-джавы в ООП-руби один в один, (java-библиотеки использовать удобнее, чем в clojure, но не так удобно как в scala)
 
       section.slide#cozy-java-usage
-        markdown:
-          * `require` jar-файла
-          * `java_import`
-          * jruby делает для вас `snake_case` алиасы `camelCase` методов
-          * просто используешь java-классы как ruby-классы
+        h2
+          | Используем джаву из руби
+
+        pre
+          code
+            | require 'java'
+
+              java_import java.util.HashMap
+              java_import java.util.Map
+
+              require_relative './essosdk.jar'
+
+              java_import com.ufinity.daytona.client.sdk.SDKConst
+              java_import com.ufinity.sso.api.client.SSOCallClientConfig
+              java_import com.ufinity.sso.api.client.SSOCallClient
+              java_import com.ufinity.sso.api.common.LogUtil
+              java_import com.ufinity.sso.api.common.SSOCall
+              java_import com.ufinity.sso.api.common.SSOCallResult
+
+              client = SSOCallClient.new()
+              call = SSOCall.new()
+              call.set_function('func') # alias for `setFunction`
+              call.acive?               # alias for `isActive`
 
       section.slide#starhub
         h2
@@ -70,6 +93,7 @@ html
 
         ul
           li есть только jar-ка
+          li последние стабильные rails без проблем завелись на jruby
           li warbler gem
 
       section.slide#lenskit
@@ -89,16 +113,37 @@ html
         ul
           li ruby-реализация плохо поддерживается
           li неполностью реализует протокол
-          li не умеет русские кодировки
+          li плохо написана
+          li не работает на последних версиях ruby
+          li не умеет русскую кодировку
+          li warbler + jbundler
+          li sinatra тоже без проблем работает на jruby
 
       section.slide#limitation
         h2
           | Недостатки
 
         ul
-          li мало, кто использует (не найдете ответов на stackoverflow, а если найдете, то они будут пятилетней давности)
-          li отстает от MRI (1.9.3, 2.2.0 в альфе)
-          li дуализм в библиотеках (что-то в гемах, что-то в java-пакетах); приходится держать и Gemfile, и Jarfile
+          li Мало кто использует (не найдете ответов на stackoverflow, а если найдете, то они будут пятилетней давности)
+          li Почти нет комьюнити
+          li До сих пор нет rack-совместимого веб-сервера поверх netty
+          li Немного отстает от MRI; версия 1.7 это ruby-1.9.3 (9.0.0.0.pre1 - 2.2)
+          li Дуализм в библиотеках (что-то в гемах, что-то в java-пакетах); приходится держать и Gemfile, и Jarfile. Это становится проблемой когда хочется сделать gem с java-зависимостями
+
+      section.slide#solutions
+        h2
+          | Java - зависимости
+
+        p Куда девать зависимости?
+
+        ol
+          li Простой путь. Положить jar'ку в репозиторий
+          li Путь rjack. Хитроумная смесь rake-задач и maven-плагинов
+          li Путь clojure. Полная мимикрия под maven-пакет
+
+      section.slide#end
+        h2
+          | Конец
 
       div aria-role='navigation'
         a.deck-prev-link href='#' title='Previous'
