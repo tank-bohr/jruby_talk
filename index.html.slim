@@ -58,7 +58,7 @@ html
           li мы пишем на ruby
           li мы не пишем на java
           li но иногда нужна java
-          li никто в команде не умеет clojure/scala/groovy - нужное подчекрнуть
+          li никто в команде не умеет clojure/scala/groovy/kotlin - нужное подчекрнуть
           li
             | маппинг из ООП-джавы в ООП-руби один в один, (java-библиотеки использовать удобнее, чем в clojure, но не так удобно как в scala)
 
@@ -101,7 +101,9 @@ html
           | Нахождение похожих книг
 
         ul
-          li ruby реализация работала ~1.5 года
+          li Collaborative filtering (CF)
+          li 500к книг, 2кк пользователей
+          li ruby реализация делала предрасчет ~1.5 года
           li lenskit recommender framework
           li lenskit работает 40 минут (10 из которых запрос в базу)
           li jbundler gem
@@ -110,14 +112,31 @@ html
         h2
           | SMPP-клиент
 
-        ul
-          li ruby-реализация плохо поддерживается
-          li неполностью реализует протокол
-          li плохо написана
-          li не работает на последних версиях ruby
-          li не умеет русскую кодировку
-          li warbler + jbundler
-          li sinatra тоже без проблем работает на jruby
+        table style="width: 100%;"
+          tr
+            th ruby-smpp
+            th cloudhopper-smpp
+          tr
+            td - плохо поддерживается
+            td + активно поддерживается
+          tr
+            td - неплоностью реализует протокол
+            td + полностью реализует протокол
+          tr
+            td - плохо написана
+            td + хорошо покрыта тестами
+          tr
+            td - не поддерживает русскую кодировку
+            td + поддерживает все кодировки
+          tr
+            td + поверх EventMachine
+            td + поверх netty
+          tr
+            td - не работает на последних версиях ruby
+            td + используется Twitter'ом
+          tr
+            td + написана на ruby
+            td - плохо документирована
 
       section.slide#limitation
         h2
@@ -144,6 +163,11 @@ html
       section.slide#end
         h2
           | Конец
+
+        p Twitter: @tank_bohr
+        br
+        a href='http://tank-bohr.github.io/jruby_talk/'
+          | http://tank-bohr.github.io/jruby_talk/
 
       div aria-role='navigation'
         a.deck-prev-link href='#' title='Previous'

@@ -69,7 +69,7 @@
             но иногда нужна java
           </li>
           <li>
-            никто в команде не умеет clojure/scala/groovy - нужное подчекрнуть
+            никто в команде не умеет clojure/scala/groovy/kotlin - нужное подчекрнуть
           </li>
           <li>
             маппинг из ООП-джавы в ООП-руби один в один, (java-библиотеки использовать удобнее, чем в clojure, но не так удобно как в scala)
@@ -121,7 +121,13 @@ call.acive?               # alias for `isActive`</code></pre>
         </h2>
         <ul>
           <li>
-            ruby реализация работала ~1.5 года
+            Collaborative filtering (CF)
+          </li>
+          <li>
+            500к книг, 2кк пользователей
+          </li>
+          <li>
+            ruby реализация делала предрасчет ~1.5 года
           </li>
           <li>
             lenskit recommender framework
@@ -138,29 +144,72 @@ call.acive?               # alias for `isActive`</code></pre>
         <h2>
           SMPP-клиент
         </h2>
-        <ul>
-          <li>
-            ruby-реализация плохо поддерживается
-          </li>
-          <li>
-            неполностью реализует протокол
-          </li>
-          <li>
-            плохо написана
-          </li>
-          <li>
-            не работает на последних версиях ruby
-          </li>
-          <li>
-            не умеет русскую кодировку
-          </li>
-          <li>
-            warbler + jbundler
-          </li>
-          <li>
-            sinatra тоже без проблем работает на jruby
-          </li>
-        </ul>
+        <table style="width: 100%;">
+          <tr>
+            <th>
+              ruby-smpp
+            </th>
+            <th>
+              cloudhopper-smpp
+            </th>
+          </tr>
+          <tr>
+            <td>
+              - плохо поддерживается
+            </td>
+            <td>
+              + активно поддерживается
+            </td>
+          </tr>
+          <tr>
+            <td>
+              - неплоностью реализует протокол
+            </td>
+            <td>
+              + полностью реализует протокол
+            </td>
+          </tr>
+          <tr>
+            <td>
+              - плохо написана
+            </td>
+            <td>
+              + хорошо покрыта тестами
+            </td>
+          </tr>
+          <tr>
+            <td>
+              - не поддерживает русскую кодировку
+            </td>
+            <td>
+              + поддерживает все кодировки
+            </td>
+          </tr>
+          <tr>
+            <td>
+              + поверх EventMachine
+            </td>
+            <td>
+              + поверх netty
+            </td>
+          </tr>
+          <tr>
+            <td>
+              - не работает на последних версиях ruby
+            </td>
+            <td>
+              + используется Twitter'ом
+            </td>
+          </tr>
+          <tr>
+            <td>
+              + написана на ruby
+            </td>
+            <td>
+              - плохо документирована
+            </td>
+          </tr>
+        </table>
       </section>
       <section class="slide" id="limitation">
         <h2>
@@ -207,6 +256,10 @@ call.acive?               # alias for `isActive`</code></pre>
         <h2>
           Конец
         </h2>
+        <p>
+          Twitter: @tank_bohr
+        </p>
+        <br /><a href="http://tank-bohr.github.io/jruby_talk/">http://tank-bohr.github.io/jruby_talk/</a>
       </section>
       <div aria-role="navigation">
         <a class="deck-prev-link" href="#" title="Previous">←</a><a class="deck-next-link" href="#" title="Next">→</a>
